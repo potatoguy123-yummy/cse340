@@ -36,10 +36,6 @@ app.get("/categories", async (req, res) => {
     res.render("categories", { title });
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello from Express!");
-});
-
 app.listen(PORT, HOST, () => {
     console.log(`Server is running at http://${HOST}:${PORT}`);
     console.log(`Environment: ${NODE_ENV}`);
