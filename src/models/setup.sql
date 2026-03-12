@@ -45,3 +45,47 @@ INSERT INTO service_projects (organization_id, title, description, location, dat
 (3, 'Park Cleanup', 'Cleaned up litter and debris in the town park.', 'Central Park', '2024-04-26'),
 (3, 'Animal Shelter Support', 'Volunteered at the local animal shelter.', 'Animal Shelter', '2024-05-03'),
 (3, 'Holiday Gift Wrapping', 'Wrapped gifts for underprivileged children during the holidays.', 'Community Center', '2024-06-15');
+
+CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    description TEXT
+);
+
+INSERT INTO categories (name, description) VALUES
+('Community Development', 'Projects focused on improving community infrastructure and facilities'),
+('Environmental Sustainability', 'Projects related to conservation, recycling, and ecological initiatives'),
+('Food Security', 'Projects addressing hunger, nutrition, and food distribution');
+
+CREATE TABLE service_project_categories (
+    project_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (project_id, category_id),
+    FOREIGN KEY (project_id) REFERENCES service_projects(project_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+-- Associate projects with categories:
+-- BrightFuture Builders Projects
+INSERT INTO service_project_categories (project_id, category_id) VALUES
+(1, 1), -- Community Center Repair -> Community Development
+(2, 1), -- Park Bench Installation -> Community Development
+(3, 1), -- School Playground Upgrade -> Community Development
+(4, 1), -- Senior Center Ramp Construction -> Community Development (accessibility)
+(5, 1); -- Habitat for Humanity Build -> Community Development
+
+-- GreenHarvest Growers Projects
+INSERT INTO service_project_categories (project_id, category_id) VALUES
+(6, 2), -- Community Garden Planting -> Environmental Sustainability
+(7, 3), -- Food Bank Donation -> Food Security
+(8, 2), -- Urban Farming Workshop -> Environmental Sustainability
+(9, 2), -- School Garden Creation -> Environmental Sustainability
+(10, 2); -- Composting Initiative -> Environmental Sustainability
+
+-- UnityServe Volunteers Projects
+INSERT INTO service_project_categories (project_id, category_id) VALUES
+(11, 3), -- Soup Kitchen Service -> Food Security
+(12, 1), -- Clothing Drive Collection -> Community Development
+(13, 2), -- Park Cleanup -> Environmental Sustainability
+(14, 1), -- Animal Shelter Support -> Community Development
+(15, 1); -- Holiday Gift Wrapping -> Community Development
