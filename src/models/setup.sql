@@ -11,3 +11,37 @@ VALUES
 ('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
 ('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.', 'contact@greenharvest.org', 'greenharvest-logo.png'),
 ('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.', 'hello@unityserve.org', 'unityserve-logo.png');
+
+CREATE TABLE service_projects (
+    project_id SERIAL PRIMARY KEY,
+    organization_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    location VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (organization_id) REFERENCES organization(organization_id)
+);
+
+-- BrightFuture Builders (OrganizationID = 1)
+INSERT INTO service_projects (organization_id, title, description, location, date) VALUES
+(1, 'Community Center Repair', 'Repaired the roof and windows of the local community center.', '123 Main Street', '2024-03-15'),
+(1, 'Park Bench Installation', 'Installed new benches in the town park.', 'Central Park', '2024-04-01'),
+(1, 'School Playground Upgrade', 'Added new safety surfacing to the school playground.', 'Oakwood Elementary', '2024-04-22'),
+(1, 'Senior Center Ramp Construction', 'Built a wheelchair-accessible ramp for the senior center.', 'Golden Years Center', '2024-05-10'),
+(1, 'Habitat for Humanity Build', 'Assisted with building a new home for a local family.', '456 Elm Street', '2024-06-01');
+
+-- GreenHarvest Growers (OrganizationID = 2)
+INSERT INTO service_projects (organization_id, title, description, location, date) VALUES
+(2, 'Community Garden Planting', 'Planted vegetables and herbs in the community garden.', 'Community Garden', '2024-03-20'),
+(2, 'Food Bank Donation', 'Donated fresh produce to the local food bank.', 'Food Bank', '2024-04-05'),
+(2, 'Urban Farming Workshop', 'Hosted a workshop on urban farming techniques.', 'Community Center', '2024-04-29'),
+(2, 'School Garden Creation', 'Created a school garden at a local elementary school.', 'Pine Ridge Elementary', '2024-05-15'),
+(2, 'Composting Initiative', 'Implemented a composting program at the community garden.', 'Community Garden', '2024-06-10');
+
+-- UnityServe Volunteers (OrganizationID = 3)
+INSERT INTO service_projects (organization_id, title, description, location, date) VALUES
+(3, 'Soup Kitchen Service', 'Served meals at the local soup kitchen.', 'Soup Kitchen', '2024-03-10'),
+(3, 'Clothing Drive Collection', 'Collected and distributed clothing donations.', 'Community Center', '2024-04-12'),
+(3, 'Park Cleanup', 'Cleaned up litter and debris in the town park.', 'Central Park', '2024-04-26'),
+(3, 'Animal Shelter Support', 'Volunteered at the local animal shelter.', 'Animal Shelter', '2024-05-03'),
+(3, 'Holiday Gift Wrapping', 'Wrapped gifts for underprivileged children during the holidays.', 'Community Center', '2024-06-15');
