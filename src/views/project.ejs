@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+<main>
+    <article>
+        <h1><%= details.title %></h1>
+        
+        <div class="project-details">
+            <p class="description"><%= details.description %></p>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <strong>Project ID:</strong> <%= details.project_id %>
+                </div>
+                
+                <div class="detail-item">
+                    <strong>Location:</strong> <%= details.location %>
+                </div>
+                
+                <div class="detail-item">
+                    <strong>Date:</strong> <%= new Date(details.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        weekday: 'long'
+                    }) %>
+                </div>
+                
+                <div class="detail-item">
+                    <strong>Organization:</strong> 
+                    <a href="/organizations/<%= details.organization_id %>">
+                        <%= details.organization_id %>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="/projects" class="btn">&larr; Back to Projects</a>
+        </div>
+    </article>
+</main>
+<%- include('partials/footer') %>
