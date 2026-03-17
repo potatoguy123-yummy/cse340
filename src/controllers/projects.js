@@ -16,7 +16,6 @@ const projectDetailsPage = async (req, res, next) => {
         err.status = 404;
         next(err);
     }
-    console.log(details);
     const title = "Project Details";
     res.render("project", { title, details: details[0] });
 }

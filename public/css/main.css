@@ -7,30 +7,25 @@ html, body {
   color: #333;
   line-height: 1.6;
 }
-
 a {
   text-decoration: none;
-  color: #34495e;
+  color: #1200ff;
 }
-
 /* Header and navigation */
 nav {
   background-color: #2c3e50;
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
 nav ul {
   list-style: none;
   padding: 0;
   display: flex;
   justify-content: flex-start;
 }
-
 nav li {
   margin-right: 20px;
 }
-
 nav a {
   text-decoration: none;
   color: #ecf0f1;
@@ -39,11 +34,9 @@ nav a {
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
-
 nav a:hover {
   background-color: #34495e;
 }
-
 /* Main content */
 main {
   max-width: 1200px;
@@ -53,24 +46,20 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
-
 /* Organization page specific styles */
 ul {
   padding-left: 0;
 }
-
 ul li {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
-
 ul li img {
   margin-right: 15px;
   width: 50px;
   height: 50px;
 }
-
 /* Footer */
 footer {
   background-color: #2c3e50;
@@ -79,13 +68,11 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
 }
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
   }
-
   nav li {
     margin-bottom: 10px;
   }
@@ -95,24 +82,19 @@ footer {
     margin: 1rem auto;
   }
 }
-
 /* Projects page specific styles */
-
 h1 {
   text-align: center;
   margin-bottom: 2rem;
   color: #3498db; /* A nice blue for the heading */
 }
-
 h2 {
   margin-bottom: 1.5rem;
   color: #2ecc71; /* A vibrant green for the sub-heading */
 }
-
 ul {
   padding-left: 0;
 }
-
 main ul li {
   display: flex;
   flex-direction: column; /* Stack items on smaller screens */
@@ -123,19 +105,108 @@ main ul li {
   background-color: #f9f9f9;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
-
 main ul li strong {
   font-size: 1.2rem;
   color: #34495e;
 }
-
 main ul li p {
   margin: 0.5rem 0;
   font-size: 0.9rem;
   color: #777;
 }
-
 main ul li span {
   font-style: italic;
   color: #95a5a6;
+}
+
+/* Category page - Related Projects List Styles */
+.category-details {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #f0f7ff;
+  border-left: 4px solid #007bff;
+  border-radius: 8px;
+}
+
+h2 {
+  margin-top: 2rem;
+  color: #2ecc71;
+}
+
+/* Related Projects List */
+.projects-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+/* Grid layout for multiple items per row */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.projects-list li {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.projects-list li:hover {
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.projects-list li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.projects-list li a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.project-date {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.no-projects {
+  color: #666;
+  font-style: italic;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Navigation Links */
+.navigation-links {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #0056b3;
 }

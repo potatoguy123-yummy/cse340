@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS organization;
+DROP TABLE IF EXISTS service_projects;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS service_project_categories;
+
 CREATE TABLE organization (
     organization_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,

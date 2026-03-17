@@ -16,6 +16,10 @@
                 </div>
                 
                 <div class="detail-item">
+                    <strong>Category:</strong> <a href="/category/<%= details.project_category %>"><%= details.category_name %></a>
+                </div>
+                
+                <div class="detail-item">
                     <strong>Date:</strong> <%= new Date(details.date).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',

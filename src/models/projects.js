@@ -53,7 +53,22 @@ const getUpcomingProjects = async(limit) => {
 
 const getProjectDetails = async (projectId) => {
   const query = `
-    SELECT * FROM service_projects WHERE project_id=$1;
+    SELECT
+      sp.project_id,
+      sp.title,
+      sp.description,
+      sp.location,
+      sp.organization_id,
+      sp.date,
+      cat.category_id AS project_category,
+      cat.name AS category_name
+    FROM
+      service_projects sp
+    LEFT JOIN
+      service_project_categories scat ON sp.project_id = scat.project_id
+    LEFT JOIN
+      categories cat ON cat.category_id = scat.category_id
+    WHERE sp.project_id=$1;
   `;
 
   const result = await db.query(query, [projectId]);
@@ -81,4 +96,25 @@ const getProjectsByOrganizationId = async (organizationId) => {
   return result.rows;
 };
 
-export { getAllProjects, getUpcomingProjects, getProjectsByOrganizationId, getProjectDetails }
+const getProjectsByCategoryId = async (categoryId) => {
+  const query = `
+    SELECT
+      sp.project_id,
+      sp.organization_id,
+      sp.title,
+      sp.description,
+      sp.location,
+      sp.date
+    FROM service_projects sp
+    RIGHT JOIN
+      service_project_categories scat ON scat.project_id = sp.project_id
+    WHERE scat.category_id = $1;
+  `;
+  
+  const query_params = [categoryId];
+  const result = await db.query(query, query_params);
+
+  return result.rows;
+};
+
+export { getAllProjects, getProjectsByCategoryId, getUpcomingProjects, getProjectsByOrganizationId, getProjectDetails }

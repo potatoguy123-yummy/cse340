@@ -2,7 +2,7 @@ import db from './db.js'
 
 const getAllCategories = async() => {
   const query = `
-    SELECT name FROM categories;
+    SELECT name, category_id FROM categories;
   `;
 
   const result = await db.query(query);
@@ -10,4 +10,14 @@ const getAllCategories = async() => {
   return result.rows;
 }
 
-export {getAllCategories}
+const getCategoryDetails = async(id) => {
+  const query = `
+    SELECT * FROM categories WHERE category_id=$1;
+  `;
+
+  const result = await db.query(query, [id]);
+
+  return result.rows;
+}
+
+export { getAllCategories, getCategoryDetails }
