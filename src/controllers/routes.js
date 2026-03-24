@@ -13,7 +13,7 @@ import {
 import { projectsPage, projectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation } from "./projects.js";
 import { indexPage } from "./index.js";
 import { testErrorPage } from "./errors.js";
-import { categoryPage, categoryDetailsPage } from "./categories.js";
+import { categoryPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm } from "./categories.js";
 
 const router = express.Router();
 
@@ -30,6 +30,8 @@ router.get('/edit-organization/:id', showEditOrganizationForm);
 router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
 router.get('/new-project', showNewProjectForm);
 router.post('/new-project', projectValidation, processNewProjectForm);
+router.get('/assign-categories/:projectId', showAssignCategoriesForm);
+router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 
 router.get('/test-error', testErrorPage);
 
