@@ -30,10 +30,7 @@ const getUpcomingProjects = async(limit) => {
     SELECT
       sp.project_id,
       sp.title,
-      sp.description,
-      sp.location,
       sp.organization_id,
-      sp.date,
       o.name AS organization_name,
       o.contact_email AS organization_contact_email
     FROM
@@ -59,6 +56,7 @@ const getProjectDetails = async (projectId) => {
       sp.description,
       sp.location,
       sp.organization_id,
+      org.name AS organization_name,
       sp.date,
       cat.category_id AS project_category,
       cat.name AS category_name
@@ -68,6 +66,8 @@ const getProjectDetails = async (projectId) => {
       service_project_categories scat ON sp.project_id = scat.project_id
     LEFT JOIN
       categories cat ON cat.category_id = scat.category_id
+    LEFT JOIN
+      organization org ON org.organization_id = sp.organization_id
     WHERE sp.project_id=$1;
   `;
 
