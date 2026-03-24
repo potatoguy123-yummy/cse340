@@ -1,9 +1,11 @@
 import express from "express";
 import { fileURLToPath } from "url";
 import path from "path";
+import session from 'express-session';
 
 import { testConnection } from './src/models/db.js';
 import router from './src/controllers/routes.js';
+import flash from './src/middleware/flash.js';
 
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || "production";
 const PORT = process.env.PORT?.toLowerCase() || 3000;
@@ -13,6 +15,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+app.use(session({
+    secret: 'potato',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // Session expires after 1 hour of inactivity
+}));
+
+app.use(flash);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
