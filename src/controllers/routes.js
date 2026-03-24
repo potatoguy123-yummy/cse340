@@ -1,6 +1,13 @@
 import express from 'express';
 
-import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm } from "./organizations.js";
+import {
+    showOrganizationsPage,
+    showOrganizationDetailsPage,
+    showNewOrganizationForm,
+    processNewOrganizationForm,
+    organizationValidation
+} from "./organizations.js";
+
 import { projectsPage, projectDetailsPage } from "./projects.js";
 import { indexPage } from "./index.js";
 import { testErrorPage } from "./errors.js";
@@ -11,7 +18,7 @@ const router = express.Router();
 router.get("/", indexPage);
 router.get("/organizations", showOrganizationsPage);
 router.get("/new-organization", showNewOrganizationForm);
-router.post("/new-organization", processNewOrganizationForm);
+router.post("/new-organization", organizationValidation, processNewOrganizationForm);
 router.get("/projects", projectsPage);
 router.get("/project/:id", projectDetailsPage);
 router.get("/categories", categoryPage);
