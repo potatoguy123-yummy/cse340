@@ -13,7 +13,7 @@ import {
 import { projectsPage, projectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from "./projects.js";
 import { indexPage } from "./index.js";
 import { testErrorPage } from "./errors.js";
-import { categoryPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm } from "./categories.js";
+import { categoryPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, categoryValidation, processNewCategoryForm } from "./categories.js";
 
 const router = express.Router();
 
@@ -34,6 +34,8 @@ router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 router.get('/edit-project/:id', showEditProjectForm);
 router.post('/edit-project/:id', projectValidation, processEditProjectForm);
+router.get("/new-category", showNewCategoryForm);
+router.post("/new-category", categoryValidation, processNewCategoryForm);
 
 router.get('/test-error', testErrorPage);
 
