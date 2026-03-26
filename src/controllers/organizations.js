@@ -82,8 +82,7 @@ const processEditOrganizationForm = async (req, res) => {
             req.flash('error', error.msg);
         });
 
-        // Redirect back to the new organization form
-        return res.redirect('/new-organization');
+        return res.redirect('/edit-organization');
     }
     const organizationId = req.params.id;
     const { name, description, contactEmail, logoFilename } = req.body;
