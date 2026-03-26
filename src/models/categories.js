@@ -44,19 +44,13 @@ const updateCategoryAssignments = async(projectId, categoryIds) => {
 const getCategoriesByServiceProjectId = async (projectId) => {
   const query = `
 SELECT
-  sp.project_id,
-  sp.title,
-  sp.description,
-  sp.location,
-  sp.organization_id,
-  sp.date,
-  cat.category_id AS project_category,
+  cat.category_id,
   cat.name AS category_name
 FROM
   service_projects sp
 LEFT JOIN
   service_project_categories scat ON sp.project_id = scat.project_id
-LEFT JOIN
+RIGHT JOIN
   categories cat ON cat.category_id = scat.category_id
 WHERE sp.project_id=$1;
   `;
