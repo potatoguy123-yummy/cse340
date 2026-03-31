@@ -14,6 +14,7 @@ import { projectsPage, projectDetailsPage, showNewProjectForm, processNewProject
 import { indexPage } from "./index.js";
 import { testErrorPage } from "./errors.js";
 import { categoryPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, categoryValidation, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm } from "./categories.js";
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout } from "./users.js";
 
 const router = express.Router();
 
@@ -38,6 +39,11 @@ router.get("/new-category", showNewCategoryForm);
 router.post("/new-category", categoryValidation, processNewCategoryForm);
 router.get('/edit-category/:id', showEditCategoryForm);
 router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
 
 router.get('/test-error', testErrorPage);
 
