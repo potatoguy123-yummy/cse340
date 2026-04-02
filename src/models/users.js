@@ -47,7 +47,7 @@ const verifyPassword = (password, passwordHash) => {
 const authenticateUser = async (email, password) => {
     const user = await findUserByEmail(email);
     if (!user) return null;
-    const correctPassword = verifyPassword(user.password_hash, password);
+    const correctPassword = await verifyPassword(user.password_hash, password);
     if (correctPassword) {
         delete user.password_hash;
         return user;
