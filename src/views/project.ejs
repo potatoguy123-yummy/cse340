@@ -39,8 +39,10 @@
         
         <div class="navigation-links">
             <a href="/projects" class="btn">&larr; Back to Projects</a>
+            <% if (user && user.role_name === 'admin') { %>
             <a href="/assign-categories/<%= details.project_id %>">Edit Categories</a>
             <a href="/edit-project/<%= details.project_id %>">Edit Project</a>
+            <% } %>
         </div>
     </article>
 </main>
