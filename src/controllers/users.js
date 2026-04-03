@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { createUser, authenticateUser } from '../models/users.js';
+import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
 
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -40,7 +40,7 @@ const processLoginForm = async (req, res) => {
             res.redirect('/login');
             return;
         }
-        
+
         req.session.user = user;
         req.flash('success', 'You have logged in.');
         if (res.locals.NODE_ENV === 'development') {
@@ -48,7 +48,7 @@ const processLoginForm = async (req, res) => {
         }
         res.redirect('/');
     } catch(e) {
-        console.error('Error during login:', error);
+        console.error('Error during login:', e);
         req.flash('error', 'An error occurred during login. Please try again.');
         res.redirect('/login');
     }
@@ -80,6 +80,20 @@ const showDashboard = (req, res) => {
     });
 };
 
+const showUsersPage = async (req, res) => {
+    try {
+        const users = await getAllUsers();
+        res.render('users', {
+            title: 'All Users',
+            users: users
+        });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        req.flash('error', 'An error occurred while fetching users.');
+        res.redirect('/');
+    }
+};
+
 const requireRole = (role) => {
     return (req, res, next) => {
         // Check if user is logged in first
@@ -99,4 +113,4 @@ const requireRole = (role) => {
     };
 };
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole };
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, showUsersPage, requireRole };
