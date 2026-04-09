@@ -39,6 +39,13 @@
         
         <div class="navigation-links">
             <a href="/projects" class="btn">&larr; Back to Projects</a>
+            <% if (isLoggedIn) { %>
+                <% if (hasVolunteered) { %>
+                    <a href="/volunteer/<%= details.project_id %>/remove" class="btn">Un-Volunteer from this project</a>
+                <% } else { %>
+                    <a href="/volunteer/<%= details.project_id %>" class="btn">Volunteer for This Project</a>
+                <% } %>
+            <% } %>
             <% if (user && user.role_name === 'admin') { %>
             <a href="/assign-categories/<%= details.project_id %>">Edit Categories</a>
             <a href="/edit-project/<%= details.project_id %>">Edit Project</a>

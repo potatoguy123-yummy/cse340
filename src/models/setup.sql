@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS organization;
 DROP TABLE IF EXISTS service_projects;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS service_project_categories;
+DROP TABLE IF EXISTS volunteers;
 
 CREATE TABLE organization (
     organization_id SERIAL PRIMARY KEY,
@@ -113,4 +114,12 @@ CREATE TABLE users (
     password_hash VARCHAR(255) NOT NULL,
     role_id INTEGER REFERENCES roles(role_id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE volunteers (
+    user_id INT NOT NULL,
+    project_id INT NOT NULL,
+    PRIMARY KEY (user_id, project_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (project_id) REFERENCES service_projects(project_id)
 );

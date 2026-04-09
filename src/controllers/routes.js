@@ -10,7 +10,7 @@ import {
     processEditOrganizationForm
 } from "./organizations.js";
 
-import { projectsPage, projectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from "./projects.js";
+import { projectsPage, projectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, volunteerProject, unvolunteerProject } from "./projects.js";
 import { indexPage } from "./index.js";
 import { testErrorPage } from "./errors.js";
 import { categoryPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, categoryValidation, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm } from "./categories.js";
@@ -35,6 +35,8 @@ router.get('/assign-categories/:projectId', requireRole('admin'), showAssignCate
 router.post('/assign-categories/:projectId', requireRole('admin'), processAssignCategoriesForm);
 router.get('/edit-project/:id', requireRole('admin'), showEditProjectForm);
 router.post('/edit-project/:id', requireRole('admin'), projectValidation, processEditProjectForm);
+router.get('/volunteer/:id', requireLogin, volunteerProject);
+router.get('/volunteer/:id/remove', requireLogin, unvolunteerProject);
 router.get("/new-category", requireRole('admin'), showNewCategoryForm);
 router.post("/new-category", requireRole('admin'), categoryValidation, processNewCategoryForm);
 router.get('/edit-category/:id', requireRole('admin'), showEditCategoryForm);
